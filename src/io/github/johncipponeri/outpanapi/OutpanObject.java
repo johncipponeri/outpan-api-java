@@ -35,20 +35,28 @@ public class OutpanObject {
 		
 		this.gtin = json.getString("gtin");
 		this.outpan_url = json.getString("outpan_url");
-		this.name = json.getString("name");
 		
-		JSONObject attrObject = json.getJSONObject("attributes");
-		String[] attrs = JSONObject.getNames(attrObject);
+		if (!json.isNull("name"))
+			this.name = json.getString("name");
 		
-		for (int a = 0; a < attrs.length; a++)
-			this.attributes.put(attrs[a], attrObject.getString(attrs[a]));
+		if (!json.isNull("attributes")) {
+			JSONObject attrObject = json.getJSONObject("attributes");
+			String[] attrs = JSONObject.getNames(attrObject);
+			
+			for (int a = 0; a < attrs.length; a++)
+				this.attributes.put(attrs[a], attrObject.getString(attrs[a]));
+		}
 		
-		JSONArray imgs = json.getJSONArray("images");
-		for (int i = 0; i < imgs.length(); i++)
-			this.images.add(imgs.getString(i));
+		if (!json.isNull("images")) {
+			JSONArray imgs = json.getJSONArray("images");
+			for (int i = 0; i < imgs.length(); i++)
+				this.images.add(imgs.getString(i));
+		}
 		
-		JSONArray vids = json.getJSONArray("videos");
-		for (int i = 0; i < vids.length(); i++)
-			this.videos.add(vids.getString(i));
+		if (!json.isNull("videos")) {
+			JSONArray vids = json.getJSONArray("videos");
+			for (int i = 0; i < vids.length(); i++)
+				this.videos.add(vids.getString(i));
+		}
 	}
 }
