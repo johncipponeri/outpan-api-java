@@ -100,5 +100,16 @@ System.out.println(obj.images.toString()); // --> [https://outpan-images.s3.amaz
 System.out.println(obj.videos.toString()); // --> []
 ```
 
+### Using with Android Studio
+
+To use this with Android Studio you must make sure your dependencies in `build.grade (Module: app)` looks like this, where your libs folder contains the `outpan-api-java` JAR file:
+
+```
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+}
+```
+
 [outpan_api]: http://www.outpan.com/developers.php
 [outpan_register]: http://www.outpan.com/index.php
