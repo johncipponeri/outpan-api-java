@@ -1,12 +1,13 @@
 package io.github.johncipponeri.outpanapi;
 
+import io.github.johncipponeri.outpanapi.android.AndroidBase64;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Base64;
 
 import org.json.JSONObject;
 
@@ -30,7 +31,7 @@ public class OutpanAPI {
 			URLConnection uc = url.openConnection();
 			
 			String key = api_key + ":";
-			String basicAuth = "Basic " + new String(Base64.getEncoder().encode(key.getBytes()));
+			String basicAuth = "Basic " + new String(AndroidBase64.encode(key.getBytes(), AndroidBase64.NO_WRAP));
 			
 			uc.setRequestProperty ("Authorization", basicAuth);
 			
